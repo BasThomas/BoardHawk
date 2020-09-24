@@ -14,7 +14,8 @@ class ProjectsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.projects = [
-            .init(name: "Bugs", body: "Bug management and prioritization.")
+            .init(name: "Bugs", body: "Bug management and prioritization."),
+            .init(name: "Pull Request Release")
         ]
     }
 
@@ -56,5 +57,28 @@ class ProjectsTableViewController: UITableViewController {
     ) {
         let project = projects[indexPath.row]
         navigationController?.pushViewController(BoardViewController(project: project), animated: true)
+    }
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let project = projects[indexPath.row]
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let edit = UIAction(
+                title: "Edit",
+                image: UIImage(systemName: "pencil")
+            ) { _ in
+                print("Edit project \(project)")
+            }
+
+            let close = UIAction(
+                title: "Close",
+                image: UIImage(systemName: "pencil.slash"),
+                attributes: [.destructive]
+            ) { _ in
+                print("Close project \(project)")
+            }
+
+            return UIMenu(children: [edit, close])
+        }
     }
 }
