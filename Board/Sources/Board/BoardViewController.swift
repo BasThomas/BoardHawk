@@ -171,14 +171,28 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
                 title: "Copy card link",
                 image: UIImage(systemName: "doc.on.doc")
             ) { _ in
-                print("Copy card link for \(card)")
+                UIPasteboard.general.string = card.url.absoluteString
             }
             #else
             copyOrShare = .init(
                 title: "Share card",
                 image: UIImage(systemName: "square.and.arrow.up")
             ) { _ in
-                print("Share card \(card)")
+                let activityViewController = UIActivityViewController(activityItems: [card.url], applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [
+                    .mail,
+                    .assignToContact,
+                    .postToWeibo,
+                    .postToVimeo,
+                    .postToFlickr,
+                    .postToFacebook,
+                    .postToTencentWeibo,
+                    .openInIBooks,
+                    .print,
+                    .saveToCameraRoll,
+                    .markupAsPDF
+                ]
+                self.present(activityViewController, animated: true)
             }
             #endif
 
@@ -190,7 +204,7 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
             }
 
             let remove = UIAction(
-                title: "Remove",
+                title: "Remove from project",
                 image: UIImage(systemName: "trash"),
                 attributes: [.destructive]
             ) { _ in

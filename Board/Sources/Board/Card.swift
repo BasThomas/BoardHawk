@@ -11,4 +11,5 @@ public struct Card: Hashable {
     let id = UUID()
     let note: String
     let isArchived: Bool
+    let url: URL = URL(string: "https://www.apple.com/")!
 }
