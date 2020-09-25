@@ -56,13 +56,22 @@ class ProjectsTableViewController: UITableViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         let project = projects[indexPath.row]
-        navigationController?.pushViewController(BoardViewController(project: project), animated: true)
+        let controller = UINavigationController(
+            rootViewController: BoardViewController(project: project)
+        )
+        navigationController?.showDetailViewController(
+            controller,
+            sender: self
+        )
     }
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let project = projects[indexPath.row]
 
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil
+        ) { suggestedActions in
             let edit = UIAction(
                 title: "Edit",
                 image: UIImage(systemName: "pencil")

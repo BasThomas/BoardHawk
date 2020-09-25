@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gly-6X-wI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iYW-6x-3zW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -8,33 +8,32 @@
     </dependencies>
     <scenes>
         <!--Projects-->
-        <scene sceneID="bCn-8X-8q2">
+        <scene sceneID="NWz-zw-8ea">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="07c-qi-8ft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tableViewController id="daI-NY-nGn" customClass="ProjectsTableViewController" customModule="BoardHawk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0lU-sL-aRl">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="BJr-Ye-i9b" customClass="ProjectsTableViewController" customModule="BoardHawk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xt5-PI-Coj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="project" textLabel="Ank-QP-7mE" detailTextLabel="D60-Zz-xio" style="IBUITableViewCellStyleSubtitle" id="0mu-FP-CSa">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="project" textLabel="Vii-gb-FUg" detailTextLabel="abF-vW-VqM" style="IBUITableViewCellStyleSubtitle" id="7Ew-eO-RLK">
+                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mu-FP-CSa" id="cmQ-07-FtO">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="60.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ew-eO-RLK" id="8zl-78-VEf">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ank-QP-7mE">
-                                            <rect key="frame" x="20" y="8" width="35" height="20.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vii-gb-FUg">
+                                            <rect key="frame" x="20" y="10" width="33" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D60-Zz-xio">
-                                            <rect key="frame" x="20" y="31.5" width="39.5" height="18"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="abF-vW-VqM">
+                                            <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -43,30 +42,43 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="daI-NY-nGn" id="wPe-3o-smF"/>
-                            <outlet property="delegate" destination="daI-NY-nGn" id="U7Y-mE-vHi"/>
+                            <outlet property="dataSource" destination="BJr-Ye-i9b" id="OLb-dU-GQf"/>
+                            <outlet property="delegate" destination="BJr-Ye-i9b" id="hUQ-WW-HTb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Projects" id="LYl-Zq-Fj0"/>
+                    <navigationItem key="navigationItem" title="Projects" id="jpM-xh-rQH"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H5i-04-Rz4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="-168"/>
+            <point key="canvasLocation" x="2612" y="678"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Yoy-pQ-l0P">
+        <scene sceneID="4eu-f5-TD8">
             <objects>
-                <navigationController id="Gly-6X-wI8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="8hn-kq-iaE">
+                <navigationController id="9DS-H7-7vL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="zmx-wx-Usg">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="daI-NY-nGn" kind="relationship" relationship="rootViewController" id="4xN-Wn-cWG"/>
+                        <segue destination="BJr-Ye-i9b" kind="relationship" relationship="rootViewController" id="jr7-mQ-vAB"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eaR-3p-JY1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oI3-l5-JJk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-491" y="-168"/>
+            <point key="canvasLocation" x="1725" y="678"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Z1c-jf-gfn">
+            <objects>
+                <splitViewController allowDoubleColumnStyle="YES" id="iYW-6x-3zW" customClass="SplitViewController" customModule="BoardHawk" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="9DS-H7-7vL" kind="relationship" relationship="masterViewController" id="SNO-cr-aZG"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jl2-hg-Chf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="761" y="679"/>
         </scene>
     </scenes>
     <resources>
