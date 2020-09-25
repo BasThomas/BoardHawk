@@ -10,6 +10,7 @@ import Foundation
 public struct Column: Hashable {
     let id = UUID()
     public let name: String
+    let url: URL = URL(string: "https://apple.com")!
     var __cards: [Card]
 
     public init(name: String) {

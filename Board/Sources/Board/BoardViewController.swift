@@ -46,9 +46,15 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private func configureCollectionView() {
+        // FIXME: Not necesary once switching to `CellRegistration`
         collectionView.register(
             CardCollectionViewCell.self,
             forCellWithReuseIdentifier: "card"
+        )
+        collectionView.register(
+            ColumnCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "column"
         )
 
         collectionView.delegate = self
@@ -74,6 +80,17 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
                     trailing: 10
                 )
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+
+                let headerSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(20)
+                )
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top
+                )
+                section.boundarySupplementaryItems = [sectionHeader]
                 return section
 
             }, configuration: configuration)
@@ -107,25 +124,42 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     }
 
     func configureDiffableDataSource() {
-        // FIXME: Only available in Big Sur+; see https://twitter.com/steipete/status/1309389856066482177
-//        let registration = UICollectionView.CellRegistration<CardCollectionViewCell, Card> { cell, indexPath, card in
-//            cell.card = card
-//        }
-//        let dataSource = UICollectionViewDiffableDataSource<Column, Card>(
-//            collectionView: collectionView
-//        ) { collectionView, indexPath, card -> UICollectionViewCell in
-//            collectionView.dequeueConfiguredReusableCell(
-//                using: registration,
-//                for: indexPath,
-//                item: card
-//            )
-//        }
-
-        let dataSource = UICollectionViewDiffableDataSource<Column, Card>(
+        let dataSource: UICollectionViewDiffableDataSource<Column, Card>
+        #if targetEnvironment(macCatalyst)
+        dataSource = .init(
             collectionView: collectionView
         ) { (collectionView, indexPath, card) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "card", for: indexPath) as! CardCollectionViewCell
             cell.card = card
+            return cell
+        }
+        #else
+        let registration = UICollectionView.CellRegistration<CardCollectionViewCell, Card> { cell, indexPath, card in
+            cell.card = card
+        }
+        dataSource = .init(
+            collectionView: collectionView
+        ) { collectionView, indexPath, card -> UICollectionViewCell in
+            collectionView.dequeueConfiguredReusableCell(
+                using: registration,
+                for: indexPath,
+                item: card
+            )
+        }
+        #endif
+
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return nil
+            }
+            let cell = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "column",
+                for: indexPath
+            ) as! ColumnCollectionReusableView
+            let column = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            cell.viewController = self
+            cell.column = column
             return cell
         }
 
@@ -165,36 +199,12 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     ) -> UIContextMenuConfiguration? {
         let card = project.__columns[indexPath.section].__cards[indexPath.row]
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let copyOrShare: UIAction
-            #if targetEnvironment(macCatalyst)
-            copyOrShare = .init(
-                title: "Copy card link",
-                image: UIImage(systemName: "doc.on.doc")
-            ) { _ in
-                UIPasteboard.general.string = card.url.absoluteString
-            }
-            #else
-            copyOrShare = .init(
-                title: "Share card",
-                image: UIImage(systemName: "square.and.arrow.up")
-            ) { _ in
-                let activityViewController = UIActivityViewController(activityItems: [card.url], applicationActivities: nil)
-                activityViewController.excludedActivityTypes = [
-                    .mail,
-                    .assignToContact,
-                    .postToWeibo,
-                    .postToVimeo,
-                    .postToFlickr,
-                    .postToFacebook,
-                    .postToTencentWeibo,
-                    .openInIBooks,
-                    .print,
-                    .saveToCameraRoll,
-                    .markupAsPDF
-                ]
-                self.present(activityViewController, animated: true)
-            }
-            #endif
+            let copyOrShare = UIAction.board.copyOrShare(
+                url: card.url,
+                copyTitle: "Copy card URL",
+                shareTitle: "Share card",
+                from: self
+            )
 
             let archive = UIAction(
                 title: "Archive",
