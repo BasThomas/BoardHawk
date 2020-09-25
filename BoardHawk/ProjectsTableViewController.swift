@@ -78,7 +78,7 @@ class ProjectsTableViewController: UITableViewController {
                 print("Close project \(project)")
             }
 
-            return UIMenu(children: [edit, close])
+            return UIMenu(title: "", children: [edit, close])
         }
     }
 }

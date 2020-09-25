@@ -107,17 +107,26 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     }
 
     func configureDiffableDataSource() {
-        let registration = UICollectionView.CellRegistration<CardCollectionViewCell, Card> { cell, indexPath, card in
-            cell.card = card
-        }
+        // FIXME: Only available in Big Sur+; see https://twitter.com/steipete/status/1309389856066482177
+//        let registration = UICollectionView.CellRegistration<CardCollectionViewCell, Card> { cell, indexPath, card in
+//            cell.card = card
+//        }
+//        let dataSource = UICollectionViewDiffableDataSource<Column, Card>(
+//            collectionView: collectionView
+//        ) { collectionView, indexPath, card -> UICollectionViewCell in
+//            collectionView.dequeueConfiguredReusableCell(
+//                using: registration,
+//                for: indexPath,
+//                item: card
+//            )
+//        }
+
         let dataSource = UICollectionViewDiffableDataSource<Column, Card>(
             collectionView: collectionView
-        ) { collectionView, indexPath, card -> UICollectionViewCell in
-            collectionView.dequeueConfiguredReusableCell(
-                using: registration,
-                for: indexPath,
-                item: card
-            )
+        ) { (collectionView, indexPath, card) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "card", for: indexPath) as! CardCollectionViewCell
+            cell.card = card
+            return cell
         }
 
         self.dataSource = dataSource
@@ -156,12 +165,22 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     ) -> UIContextMenuConfiguration? {
         let card = project.__columns[indexPath.section].__cards[indexPath.row]
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let copy = UIAction(
+            let copyOrShare: UIAction
+            #if targetEnvironment(macCatalyst)
+            copyOrShare = .init(
                 title: "Copy card link",
                 image: UIImage(systemName: "doc.on.doc")
             ) { _ in
                 print("Copy card link for \(card)")
             }
+            #else
+            copyOrShare = .init(
+                title: "Share card",
+                image: UIImage(systemName: "square.and.arrow.up")
+            ) { _ in
+                print("Share card \(card)")
+            }
+            #endif
 
             let archive = UIAction(
                 title: "Archive",
@@ -178,7 +197,7 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
                 print("Remove card \(card)")
             }
 
-            return UIMenu(children: [copy, archive, remove])
+            return UIMenu(title: "", children: [copyOrShare, archive, remove])
         }
     }
 }

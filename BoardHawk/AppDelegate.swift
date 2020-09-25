@@ -7,7 +7,9 @@
 
 import UIKit
 
-@main
+// FIXME: Only available in Big Sur+
+//@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
