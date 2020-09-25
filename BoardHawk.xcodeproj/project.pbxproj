@@ -15,6 +15,7 @@
 		5D3C7220251CDDB500A7AB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D3C721F251CDDB500A7AB76 /* Assets.xcassets */; };
 		5D3C7223251CDDB500A7AB76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3C7221251CDDB500A7AB76 /* LaunchScreen.storyboard */; };
 		5D3C722E251CDDB600A7AB76 /* BoardHawkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3C722D251CDDB600A7AB76 /* BoardHawkTests.swift */; };
+		5D725BD9251E48B200CDA08A /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D725BD8251E48B200CDA08A /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		5D3C722D251CDDB600A7AB76 /* BoardHawkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardHawkTests.swift; sourceTree = "<group>"; };
 		5D3C722F251CDDB600A7AB76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D3C7249251CDE2B00A7AB76 /* BoardHawk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoardHawk.entitlements; sourceTree = "<group>"; };
+		5D725BD8251E48B200CDA08A /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				5D3C7216251CDDB300A7AB76 /* AppDelegate.swift */,
 				5D3C7218251CDDB300A7AB76 /* SceneDelegate.swift */,
 				5D2F5B30251D08A300B71598 /* ProjectsTableViewController.swift */,
+				5D725BD8251E48B200CDA08A /* SplitViewController.swift */,
 				5D2F5B28251D07A500B71598 /* Main.storyboard */,
 				5D3C721F251CDDB500A7AB76 /* Assets.xcassets */,
 				5D3C7221251CDDB500A7AB76 /* LaunchScreen.storyboard */,
@@ -221,6 +224,7 @@
 				5D3C7217251CDDB300A7AB76 /* AppDelegate.swift in Sources */,
 				5D3C7219251CDDB300A7AB76 /* SceneDelegate.swift in Sources */,
 				5D2F5B31251D08A300B71598 /* ProjectsTableViewController.swift in Sources */,
+				5D725BD9251E48B200CDA08A /* SplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +381,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BoardHawk/BoardHawk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KYPUGHVBB7;
 				INFOPLIST_FILE = BoardHawk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -397,6 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BoardHawk/BoardHawk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KYPUGHVBB7;
 				INFOPLIST_FILE = BoardHawk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -65,7 +65,11 @@ class ProjectsTableViewController: UITableViewController {
         )
     }
 
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    override func tableView(
+        _ tableView: UITableView,
+        contextMenuConfigurationForRowAt indexPath: IndexPath,
+        point: CGPoint
+    ) -> UIContextMenuConfiguration? {
         let project = projects[indexPath.row]
 
         return UIContextMenuConfiguration(
