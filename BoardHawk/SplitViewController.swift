@@ -11,5 +11,8 @@ class SplitViewController: UISplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         primaryBackgroundStyle = .sidebar
+        #if !targetEnvironment(macCatalyst)
+        preferredDisplayMode = .oneBesideSecondary
+        #endif
     }
 }
