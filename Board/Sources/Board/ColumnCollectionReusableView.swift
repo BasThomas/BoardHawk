@@ -41,6 +41,7 @@ class ColumnCollectionReusableView: UICollectionReusableView {
             "Add Card",
             comment: "Add card to columm button"
         )
+        addCardButton.isPointerInteractionEnabled = true
 
         configureButton.setImage(
             UIImage(systemName: "ellipsis.circle"),
@@ -50,6 +51,7 @@ class ColumnCollectionReusableView: UICollectionReusableView {
             "Configure Column",
             comment: "Column configuration button"
         )
+        configureButton.isPointerInteractionEnabled = true
 
         let stackView = UIStackView(
             arrangedSubviews: [
