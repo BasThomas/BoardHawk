@@ -21,6 +21,8 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
         title = project.name
         addCollectionView()
         configureCollectionView()
+        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        navigationItem.leftItemsSupplementBackButton = true
     }
 
     private func addCollectionView() {
