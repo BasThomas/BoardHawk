@@ -205,7 +205,8 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
                 url: card.url,
                 copyTitle: "Copy card URL",
                 shareTitle: "Share card",
-                from: self
+                from: .view(collectionView.cellForItem(at: indexPath)!),
+                in: self
             )
 
             let archive = UIAction(

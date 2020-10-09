@@ -101,7 +101,8 @@ class ColumnCollectionReusableView: UICollectionReusableView {
             url: column.url,
             copyTitle: "Copy column URL",
             shareTitle: "Share column",
-            from: viewController
+            from: .view(configureButton),
+            in: viewController
         )
 
         let delete = UIAction(

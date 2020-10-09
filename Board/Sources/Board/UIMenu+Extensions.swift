@@ -7,12 +7,18 @@
 
 import UIKit
 
+enum Source {
+    case barButtonItem(UIBarButtonItem)
+    case view(UIView)
+}
+
 struct BoardMenus {
     func copyOrShare(
         url: URL,
         copyTitle: String,
         shareTitle: String,
-        from viewController: UIViewController
+        from source: Source,
+        in viewController: UIViewController
     ) -> UIAction {
         let copyOrShare: UIAction
         #if targetEnvironment(macCatalyst)
@@ -44,6 +50,12 @@ struct BoardMenus {
                 .saveToCameraRoll,
                 .markupAsPDF
             ]
+            switch source {
+            case .barButtonItem(let barButtonItem):
+                activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
+            case .view(let view):
+                activityViewController.popoverPresentationController?.sourceView = view
+            }
             viewController.present(activityViewController, animated: true)
         }
         #endif
