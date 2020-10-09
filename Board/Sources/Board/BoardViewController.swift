@@ -201,7 +201,7 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     ) -> UIContextMenuConfiguration? {
         let card = project.__columns[indexPath.section].__cards[indexPath.row]
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let copyOrShare = UIAction.board.copyOrShare(
+            let copyOrShare = UIAction.board.share(
                 url: card.url,
                 copyTitle: "Copy card URL",
                 shareTitle: "Share card",

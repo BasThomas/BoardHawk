@@ -13,23 +13,14 @@ enum Source {
 }
 
 struct BoardMenus {
-    func copyOrShare(
+    func share(
         url: URL,
         copyTitle: String,
         shareTitle: String,
         from source: Source,
         in viewController: UIViewController
     ) -> UIAction {
-        let copyOrShare: UIAction
-        #if targetEnvironment(macCatalyst)
-        copyOrShare = .init(
-            title: copyTitle,
-            image: UIImage(systemName: "doc.on.doc")
-        ) { _ in
-            UIPasteboard.general.string = url.absoluteString
-        }
-        #else
-        copyOrShare = .init(
+        let shareAction = UIAction(
             title: shareTitle,
             image: UIImage(systemName: "square.and.arrow.up")
         ) { _ in
@@ -55,12 +46,12 @@ struct BoardMenus {
                 activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
             case .view(let view):
                 activityViewController.popoverPresentationController?.sourceView = view
+                activityViewController.popoverPresentationController?.sourceRect = CGRect(origin: view.center, size: .zero)
             }
             viewController.present(activityViewController, animated: true)
         }
-        #endif
 
-        return copyOrShare
+        return shareAction
     }
 }
 

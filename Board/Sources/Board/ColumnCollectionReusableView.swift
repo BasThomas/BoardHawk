@@ -97,7 +97,7 @@ class ColumnCollectionReusableView: UICollectionReusableView {
             print("Archive all cards in colunn \(column)")
         }
 
-        let copyOrShare = UIAction.board.copyOrShare(
+        let copyOrShare = UIAction.board.share(
             url: column.url,
             copyTitle: "Copy column URL",
             shareTitle: "Share column",
