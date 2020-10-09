@@ -381,13 +381,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BoardHawk/BoardHawk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KYPUGHVBB7;
+				DEVELOPMENT_TEAM = DS9YSG6KS8;
 				INFOPLIST_FILE = BoardHawk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.githawk.BoardHawk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.githawk.BoardHawk.bas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -402,13 +402,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BoardHawk/BoardHawk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KYPUGHVBB7;
+				DEVELOPMENT_TEAM = DS9YSG6KS8;
 				INFOPLIST_FILE = BoardHawk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.githawk.BoardHawk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.githawk.BoardHawk.bas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
