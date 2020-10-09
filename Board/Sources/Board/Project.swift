@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Project {
+public struct Project: Hashable {
     let id = UUID()
     public let name: String
     public let body: String?
