@@ -15,13 +15,12 @@ enum Source {
 struct BoardMenus {
     func share(
         url: URL,
-        copyTitle: String,
-        shareTitle: String,
+        title: String,
         from source: Source,
         in viewController: UIViewController
     ) -> UIAction {
         let shareAction = UIAction(
-            title: shareTitle,
+            title: title,
             image: UIImage(systemName: "square.and.arrow.up")
         ) { _ in
             let activityViewController = UIActivityViewController(

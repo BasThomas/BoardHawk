@@ -203,8 +203,7 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             let copyOrShare = UIAction.board.share(
                 url: card.url,
-                copyTitle: "Copy card URL",
-                shareTitle: "Share card",
+                title: "Share card",
                 from: .view(collectionView.cellForItem(at: indexPath)!),
                 in: self
             )
