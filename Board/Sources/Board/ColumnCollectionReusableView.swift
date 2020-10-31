@@ -98,7 +98,7 @@ class ColumnCollectionReusableView: UICollectionReusableView {
         }
 
         let copyOrShare = UIAction.board.share(
-            url: column.url,
+            url: column.projectURL,
             title: "Share column",
             from: .view(configureButton),
             in: viewController

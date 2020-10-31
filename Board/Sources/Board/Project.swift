@@ -7,21 +7,9 @@
 
 import Foundation
 
-public struct Project: Hashable {
-    let id = UUID()
+public struct Project: Hashable, Decodable {
+    public let id: Int
     public let name: String
     public let body: String?
-    public var __columns: [Column]
-
-    public init(
-        name: String,
-        body: String? = nil
-    ) {
-        self.name = name
-        self.body = body
-        __columns = [
-            .init(name: "Needs triage"),
-            .init(name: "High priority")
-        ]
-    }
+    public let columnURL: URL?
 }

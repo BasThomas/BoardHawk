@@ -16,12 +16,43 @@ class ProjectsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Projects", comment: "Project overview title")
-        self.projects = [
-            .init(name: "Bugs", body: "Bug management and prioritization."),
-            .init(name: "Pull Request Release")
-        ]
         
         configureDiffableDatasource()
+        
+        let owner = "GithawkApp"
+        let repo = "GitHawk"
+        var req = URLRequest(url: URL(string: "https://api.github.com/repos/\(owner)/\(repo)/projects")!)
+        req.httpMethod = "GET"
+        req.setValue(
+            "application/vnd.github.inertia-preview+json",
+            forHTTPHeaderField: "Accept"
+        )
+        
+        req.setValue(
+            "token \(try! Token.retrieveFromKeychain().accessToken)",
+            forHTTPHeaderField: "Authorization"
+        )
+        let task = URLSession.shared.dataTask(
+            with: req
+        ) { data, response, error in
+            #warning("TODO: error handling")
+            guard error == nil else { fatalError(error!.localizedDescription) }
+            #warning("TODO: error handling")
+            guard let data = data else { fatalError("No data") }
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            do {
+                let projects = try decoder.decode([Project].self, from: data)
+                self.projects = projects
+                DispatchQueue.main.async {
+                    self.updateSnapshot(animated: true)
+                }
+            } catch {
+                #warning("TODO: error handling")
+                print(error)
+            }
+        }
+        task.resume()
     }
     
     func configureDiffableDatasource() {

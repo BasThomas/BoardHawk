@@ -2,6 +2,7 @@ import UIKit
 
 public class BoardViewController: UIViewController, UICollectionViewDelegate {
     let project: Project
+    private var data: [Column: [Card]] = [:]
 
     private var collectionView: UICollectionView!
     private(set) var dataSource: UICollectionViewDiffableDataSource<Column, Card>!
@@ -23,6 +24,77 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
         configureCollectionView()
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
+        
+        // get collumns
+        var req = URLRequest(url: URL(string: "https://api.github.com/projects/\(project.id)/columns")!)
+        req.httpMethod = "GET"
+        req.setValue(
+            "application/vnd.github.inertia-preview+json",
+            forHTTPHeaderField: "Accept"
+        )
+        
+        req.setValue(
+            "token \(try! Token.retrieveFromKeychain().accessToken)",
+            forHTTPHeaderField: "Authorization"
+        )
+        let task = URLSession.shared.dataTask(
+            with: req
+        ) { data, response, error in
+            #warning("TODO: error handling")
+            guard error == nil else { fatalError(error!.localizedDescription) }
+            #warning("TODO: error handling")
+            guard let data = data else { fatalError("No data") }
+            let decoder = JSONDecoder()
+            do {
+                let columns = try decoder.decode([Column].self, from: data)
+                var _data: [Column: [Card]] = [:]
+                columns.forEach {
+                    _data[$0] = []
+                }
+                self.data = _data
+                DispatchQueue.main.async {
+                    self.updateSnapshot(animated: true)
+                }
+                columns.forEach { column in
+                    var req = URLRequest(url: URL(string: "https://api.github.com/projects/columns/\(column.id)/cards")!)
+                    req.httpMethod = "GET"
+                    req.setValue(
+                        "application/vnd.github.inertia-preview+json",
+                        forHTTPHeaderField: "Accept"
+                    )
+                    
+                    req.setValue(
+                        "token \(try! Token.retrieveFromKeychain().accessToken)",
+                        forHTTPHeaderField: "Authorization"
+                    )
+                    let task = URLSession.shared.dataTask(
+                        with: req
+                    ) { data, response, error in
+                        #warning("TODO: error handling")
+                        guard error == nil else { fatalError(error!.localizedDescription) }
+                        #warning("TODO: error handling")
+                        guard let data = data else { fatalError("No data") }
+                        let decoder = JSONDecoder()
+                        do {
+                            print(try JSONSerialization.jsonObject(with: data))
+                            let cards = try decoder.decode([Card].self, from: data)
+                            self.data[column] = cards
+                            DispatchQueue.main.async {
+                                self.updateSnapshot(animated: true)
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    task.resume()
+                }
+            } catch {
+                #warning("TODO: error handling")
+                print(error)
+            }
+        }
+        task.resume()
+        // get cards for columns
     }
 
     private func addCollectionView() {
@@ -175,9 +247,9 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
     ) {
         var snapshot = NSDiffableDataSourceSnapshot<Column, Card>()
 
-        snapshot.appendSections(project.__columns)
-        project.__columns.forEach { column in
-            snapshot.appendItems(column.__cards, toSection: column)
+        snapshot.appendSections(Array(data.keys))
+        data.forEach { column, cards in
+            snapshot.appendItems(cards, toSection: column)
         }
 
         dataSource.apply(
@@ -190,8 +262,8 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        let card = project.__columns[indexPath.section].__cards[indexPath.row]
-        print(card)
+//        let card = project.__columns[indexPath.section].__cards[indexPath.row]
+//        print(card)
     }
 
     public func collectionView(
@@ -199,31 +271,32 @@ public class BoardViewController: UIViewController, UICollectionViewDelegate {
         contextMenuConfigurationForItemAt indexPath: IndexPath,
         point: CGPoint
     ) -> UIContextMenuConfiguration? {
-        let card = project.__columns[indexPath.section].__cards[indexPath.row]
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let copyOrShare = UIAction.board.share(
-                url: card.url,
-                title: "Share card",
-                from: .view(collectionView.cellForItem(at: indexPath)!),
-                in: self
-            )
-
-            let archive = UIAction(
-                title: "Archive",
-                image: UIImage(systemName: "archivebox")
-            ) { _ in
-                print("Archive card \(card)")
-            }
-
-            let remove = UIAction(
-                title: "Remove from project",
-                image: UIImage(systemName: "trash"),
-                attributes: [.destructive]
-            ) { _ in
-                print("Remove card \(card)")
-            }
-
-            return UIMenu(title: "", children: [copyOrShare, archive, remove])
-        }
+        return nil
+//        let card = project.__columns[indexPath.section].__cards[indexPath.row]
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+//            let copyOrShare = UIAction.board.share(
+//                url: card.url,
+//                title: "Share card",
+//                from: .view(collectionView.cellForItem(at: indexPath)!),
+//                in: self
+//            )
+//
+//            let archive = UIAction(
+//                title: "Archive",
+//                image: UIImage(systemName: "archivebox")
+//            ) { _ in
+//                print("Archive card \(card)")
+//            }
+//
+//            let remove = UIAction(
+//                title: "Remove from project",
+//                image: UIImage(systemName: "trash"),
+//                attributes: [.destructive]
+//            ) { _ in
+//                print("Remove card \(card)")
+//            }
+//
+//            return UIMenu(title: "", children: [copyOrShare, archive, remove])
+//        }
     }
 }
