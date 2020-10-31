@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		496271472538935900414145 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496271462538935900414145 /* Secrets.swift */; };
 		5D2F5B23251D03D100B71598 /* Board in Frameworks */ = {isa = PBXBuildFile; productRef = 5D2F5B22251D03D100B71598 /* Board */; };
 		5D2F5B29251D07A500B71598 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2F5B28251D07A500B71598 /* Main.storyboard */; };
 		5D2F5B31251D08A300B71598 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2F5B30251D08A300B71598 /* ProjectsTableViewController.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		496271462538935900414145 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		5D2F5B1A251D009800B71598 /* Board */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Board; sourceTree = "<group>"; };
 		5D2F5B28251D07A500B71598 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5D2F5B30251D08A300B71598 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 				5D3C7218251CDDB300A7AB76 /* SceneDelegate.swift */,
 				5D2F5B30251D08A300B71598 /* ProjectsTableViewController.swift */,
 				5D725BD8251E48B200CDA08A /* SplitViewController.swift */,
-				496271462538935900414145 /* Secrets.swift */,
 				5D2F5B28251D07A500B71598 /* Main.storyboard */,
 				5D3C721F251CDDB500A7AB76 /* Assets.xcassets */,
 				5D3C7221251CDDB500A7AB76 /* LaunchScreen.storyboard */,
@@ -225,7 +222,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D3C7217251CDDB300A7AB76 /* AppDelegate.swift in Sources */,
-				496271472538935900414145 /* Secrets.swift in Sources */,
 				5D3C7219251CDDB300A7AB76 /* SceneDelegate.swift in Sources */,
 				5D2F5B31251D08A300B71598 /* ProjectsTableViewController.swift in Sources */,
 				5D725BD9251E48B200CDA08A /* SplitViewController.swift in Sources */,
