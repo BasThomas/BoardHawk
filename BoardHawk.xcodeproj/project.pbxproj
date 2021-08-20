@@ -380,8 +380,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BoardHawk/BoardHawk.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DS9YSG6KS8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BoardHawk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -401,8 +402,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BoardHawk/BoardHawk.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DS9YSG6KS8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BoardHawk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

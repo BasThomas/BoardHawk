@@ -112,7 +112,6 @@ class ColumnCollectionReusableView: UICollectionReusableView {
             print("Delete \(column)")
         }
 
-        #if !targetEnvironment(macCatalyst)
         addCardButton.addAction(UIAction { _ in
             print("add card")
         }, for: .touchUpInside)
@@ -123,8 +122,5 @@ class ColumnCollectionReusableView: UICollectionReusableView {
                 edit, archive, copyOrShare, delete
         ])
         configureButton.showsMenuAsPrimaryAction = true
-        #else
-        #warning("Only available starting with Big Sur...")
-        #endif
     }
 }
